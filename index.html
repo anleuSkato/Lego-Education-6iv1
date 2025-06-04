@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #ruletaCanvas {
+            display: block;
+            margin: 0 auto;
+            border: 5px solid #333;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        #botonGirar {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #FF0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #botonGirar:hover {
+            background-color: #E60000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="ruletaCanvas" width="400" height="400"></canvas>
+    <button id="botonGirar">Girar Ruleta</button>
+    <div id="resultado" style="text-align: center; font-size: 24px; margin-top: 20px;"></div>
+
+    <script>
+        const canvas = document.getElementById('ruletaCanvas');
+        const ctx = canvas.getContext('2d');
+        const botonGirar = document.getElementById('botonGirar');
+        const resultado = document.getElementById('resultado');
+        
+        const opciones = [
+            {color: '#FF0000', texto: 'Set LEGO Star Wars'},
+            {color: '#FFD700', texto: 'Minifigura dorada'},
+            {color: '#0057B7', texto: 'Pase a LEGOLAND'},
+            {color: '#00A651', texto: 'Set LEGO Ninjago'},
+            {color: '#FF6B00', texto: '30% Descuento'},
+            {color: '#00BFFF', texto: 'Set LEGO Friends'},
+            {color: '#FF69B4', texto: 'Set LEGO Disney'},
+            {color: '#800080', texto: 'Sigue participando'},
+            {color: '#C0FF00', texto: '15% Descuento'},
+            {color: '#FFFFFF', texto: 'Piezas LEGO exclusivas'},
+            {color: '#FFA500', texto: 'Set LEGO City'},
+            {color: '#FF1493', texto: 'Sorpresa LEGO'},
+            {color: '#ADD8E6', texto: 'Sigue participando'}
+        ];
+                
+        let anguloActual = 0;
+        let girando = false;
+        const logo = new Image();
+        logo.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/500px-LEGO_logo.svg.png';
+        logo.crossOrigin = "Anonymous"; // Permite manipular la imagen si está en otro dominio
+
+        function dibujarRuleta() {
+            const centroX = canvas.width / 2;
+            const centroY = canvas.height / 2;
+            const radio = Math.min(centroX, centroY) - 10;
+            const anguloPorSeccion = (2 * Math.PI) / opciones.length;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Dibujar secciones
+            opciones.forEach((opcion, index) => {
+                ctx.beginPath();
+                ctx.moveTo(centroX, centroY);
+                ctx.arc(
+                    centroX, centroY, radio,
+                    anguloActual + (index * anguloPorSeccion),
+                    anguloActual + ((index + 1) * anguloPorSeccion)
+                );
+                ctx.closePath();
+                ctx.fillStyle = opcion.color;
+                ctx.fill();
+                ctx.stroke();
+                
+                // Dibujar texto
+                ctx.save();
+                ctx.translate(centroX, centroY);
+                ctx.rotate(anguloActual + (index * anguloPorSeccion) + (anguloPorSeccion / 2));
+                ctx.textAlign = 'right';
+                ctx.font = 'bold 14px Arial';
+                ctx.fillStyle = (['#0057B7', '#800080', '#00A651'].includes(opcion.color)) ? '#FFF' : '#000';
+                ctx.fillText(opcion.texto, radio - 20, 5);
+                ctx.restore();
+            });
+            
+            // Dibujar logo REDONDO
+            if (logo.complete) {
+                ctx.save();
+                // Crear un camino circular para recortar
+                ctx.beginPath();
+                ctx.arc(centroX, centroY, 40, 0, Math.PI * 2); // Radio de 40px
+                ctx.closePath();
+                ctx.clip(); // Aplicar el recorte
+                
+                // Dibujar la imagen (ajustada al círculo)
+                ctx.drawImage(
+                    logo, 
+                    centroX - 40, // Posición X (centrado)
+                    centroY - 40, // Posición Y (centrado)
+                    80,          // Ancho
+                    80           // Alto
+                );
+                ctx.restore();
+                
+                // Borde del círculo (opcional)
+                ctx.beginPath();
+                ctx.arc(centroX, centroY, 40, 0, Math.PI * 2);
+                ctx.strokeStyle = '#FFF';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+            } else {
+                // Fallback si la imagen no carga
+                ctx.beginPath();
+                ctx.arc(centroX, centroY, 40, 0, Math.PI * 2);
+                ctx.fillStyle = '#FF0000';
+                ctx.fill();
+                ctx.stroke();
+            }
+        }
+        
+        function girar() {
+            if (girando) return;
+            
+            girando = true;
+            resultado.textContent = '';
+            
+            const vueltas = 5 + Math.random() * 3;
+            const anguloFinal = (vueltas * 2 * Math.PI) + (Math.random() * 2 * Math.PI);
+            const duracion = 5000;
+            const inicio = performance.now();
+            
+            function animar(tiempoActual) {
+                const tiempoTranscurrido = tiempoActual - inicio;
+                const progreso = Math.min(tiempoTranscurrido / duracion, 1);
+                const easing = 1 - Math.pow(1 - progreso, 3);
+                
+                anguloActual = easing * anguloFinal;
+                dibujarRuleta();
+                
+                if (progreso < 1) {
+                    requestAnimationFrame(animar);
+                } else {
+                    const anguloNormalizado = anguloFinal % (2 * Math.PI);
+                    const indiceGanador = Math.floor(opciones.length - (anguloNormalizado / (2 * Math.PI / opciones.length))) % opciones.length;
+                    resultado.textContent = `¡Ganaste: ${opciones[indiceGanador].texto}!`;
+                    girando = false;
+                }
+            }
+            
+            requestAnimationFrame(animar);
+        }
+        
+        logo.onload = dibujarRuleta;
+        dibujarRuleta();
+        botonGirar.addEventListener('click', girar);
+    </script>
+</body>
+</html>
