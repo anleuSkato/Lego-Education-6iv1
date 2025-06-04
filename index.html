@@ -6,6 +6,8 @@
             background-color: #f5f5f5; /* Gris claro */
             position: relative;
             overflow: hidden;
+            text-align: center;
+            font-family: Arial, sans-serif;
         }
         body::before {
             content: "";
@@ -17,12 +19,42 @@
             background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, rgba(255,0,0,0.05) 50%, transparent 70%);
             z-index: -1;
         }
+        #contenedor-ruleta {
+            position: relative;
+            width: 420px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
         #ruletaCanvas {
             display: block;
-            margin: 0 auto;
             border: 5px solid #333;
             border-radius: 50%;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            background-color: white;
+        }
+        #flecha {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-top: 50px solid #FF0000; /* Rojo LEGO */
+            z-index: 10;
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+        }
+        #flecha::after {
+            content: "";
+            position: absolute;
+            top: -60px;
+            left: -15px;
+            width: 30px;
+            height: 30px;
+            background-color: #FFD700; /* Amarillo LEGO */
+            border-radius: 50%;
+            z-index: -1;
         }
         #botonGirar {
             display: block;
@@ -41,7 +73,10 @@
     </style>
 </head>
 <body>
-    <canvas id="ruletaCanvas" width="400" height="400"></canvas>
+    <div id="contenedor-ruleta">
+        <div id="flecha"></div>
+        <canvas id="ruletaCanvas" width="400" height="400"></canvas>
+    </div>
     <button id="botonGirar">Girar Ruleta</button>
     <div id="resultado" style="text-align: center; font-size: 24px; margin-top: 20px;"></div>
 
@@ -71,7 +106,7 @@
         let girando = false;
         const logo = new Image();
         logo.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/500px-LEGO_logo.svg.png';
-        logo.crossOrigin = "Anonymous"; // Permite manipular la imagen si está en otro dominio
+        logo.crossOrigin = "Anonymous";
 
         function dibujarRuleta() {
             const centroX = canvas.width / 2;
@@ -109,30 +144,20 @@
             // Dibujar logo REDONDO
             if (logo.complete) {
                 ctx.save();
-                // Crear un camino circular para recortar
                 ctx.beginPath();
-                ctx.arc(centroX, centroY, 40, 0, Math.PI * 2); // Radio de 40px
+                ctx.arc(centroX, centroY, 40, 0, Math.PI * 2);
                 ctx.closePath();
-                ctx.clip(); // Aplicar el recorte
-                
-                // Dibujar la imagen (ajustada al círculo)
-                ctx.drawImage(
-                    logo, 
-                    centroX - 40, // Posición X (centrado)
-                    centroY - 40, // Posición Y (centrado)
-                    80,          // Ancho
-                    80           // Alto
-                );
+                ctx.clip();
+                ctx.drawImage(logo, centroX - 40, centroY - 40, 80, 80);
                 ctx.restore();
                 
-                // Borde del círculo (opcional)
+                // Borde del círculo
                 ctx.beginPath();
                 ctx.arc(centroX, centroY, 40, 0, Math.PI * 2);
                 ctx.strokeStyle = '#FFF';
                 ctx.lineWidth = 3;
                 ctx.stroke();
             } else {
-                // Fallback si la imagen no carga
                 ctx.beginPath();
                 ctx.arc(centroX, centroY, 40, 0, Math.PI * 2);
                 ctx.fillStyle = '#FF0000';
