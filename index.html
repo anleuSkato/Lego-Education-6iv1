@@ -121,7 +121,112 @@
         </nav>
     </header>
 
-    <!-- Resto de tu contenido HTML... -->
+      <div class="banner">
+        <h2>Bienvenido a Aprende Multimedia</h2>
+        <p>Una plataforma educativa interactiva para todos los niveles</p>
+        <!-- Aquí iría un video o imagen de banner -->
+    </div>
+    
+    <div class="content">
+        <h2>¿Qué es Aprende Multimedia?</h2>
+        <p>Aprende Multimedia es una plataforma educativa que ofrece recursos interactivos para estudiantes de todos los niveles. Nuestro objetivo es hacer el aprendizaje más divertido y efectivo a través de videos, infografías y actividades interactivas.</p>
+        <p>Selecciona tu nivel educativo en el menú superior para comenzar a explorar nuestros recursos.</p>
+    </div>
+    
+    <!-- Página de Nivel Educativo (Ejemplo: Primaria) -->
+    <div id="primaria" class="content" style="display: none;">
+        <h2>Nivel Primaria</h2>
+        <h3>Las Plantas y su Ciclo de Vida</h3>
+        
+        <div class="multimedia-container">
+            <div class="multimedia-item">
+                <h4>Video Explicativo</h4>
+                <!-- Espacio para incrustar video -->
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+            </div>
+            
+            <div class="multimedia-item">
+                <h4>Infografía Interactiva</h4>
+                <!-- Espacio para infografía -->
+                <img src="infografia-plantas.jpg" alt="Ciclo de vida de las plantas" style="width:100%;">
+                <p>Haz clic en las diferentes partes de la planta para aprender más.</p>
+            </div>
+        </div>
+        
+        <div class="multimedia-item">
+            <h4>Actividad Interactiva</h4>
+            <!-- Quiz simple -->
+            <div id="quiz">
+                <p>1. ¿Qué necesitan las plantas para hacer la fotosíntesis?</p>
+                <input type="radio" name="q1" id="q1a"> <label for="q1a">Agua, luz solar y dióxido de carbono</label><br>
+                <input type="radio" name="q1" id="q1b"> <label for="q1b">Agua y tierra</label><br>
+                <input type="radio" name="q1" id="q1c"> <label for="q1c">Solo luz solar</label>
+                
+                <p>2. ¿Qué parte de la planta absorbe agua y nutrientes?</p>
+                <input type="radio" name="q2" id="q2a"> <label for="q2a">Las hojas</label><br>
+                <input type="radio" name="q2" id="q2b"> <label for="q2b">Las raíces</label><br>
+                <input type="radio" name="q2" id="q2c"> <label for="q2c">El tallo</label>
+                
+                <button class="btn" onclick="calcularResultado()">Verificar respuestas</button>
+                <div id="resultado"></div>
+            </div>
+        </div>
+        
+        <div class="navigation-buttons">
+            <a href="#preescolar" class="btn">Anterior</a>
+            <a href="#header" class="btn">Inicio</a>
+            <a href="#secundaria" class="btn">Siguiente</a>
+        </div>
+    </div>
+    
+    <!-- Página de Contacto -->
+    <div id="contacto" class="content" style="display: none;">
+        <h2>Contacto / Ayuda</h2>
+        
+        <div class="contact-form">
+            <form id="formulario-contacto">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Enviar mensaje</button>
+            </form>
+        </div>
+        
+        <div class="contact-info" style="margin-top: 30px;">
+            <h3>También puedes contactarnos por:</h3>
+            <p>Email: contacto@aprendemultimedia.com</p>
+            <p>Teléfono: +52 55 1234 5678</p>
+            
+            <div class="social-media">
+                <h3>Síguenos en redes sociales:</h3>
+                <a href="#"><img src="facebook-icon.png" alt="Facebook" width="30"></a>
+                <a href="#"><img src="twitter-icon.png" alt="Twitter" width="30"></a>
+                <a href="#"><img src="youtube-icon.png" alt="YouTube" width="30"></a>
+            </div>
+        </div>
+        
+        <div class="navigation-buttons">
+            <a href="#header" class="btn">Volver al inicio</a>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Aprende Multimedia &copy; 2023 - Todos los derechos reservados</p>
+        <p>Desarrollado por [Los Yakulada]</p>
+        <p>anleuesparzaangeljafed@cecyt12.edu.mx</p>
+    </footer>
 
     <script>
         // Menú hamburguesa para móviles
