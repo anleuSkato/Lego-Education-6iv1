@@ -1,194 +1,291 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende Multimedia</title>
     <style>
+        /* Estilos básicos */
         body {
-            background-color: #f5f5f5;
-            position: relative;
-            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .banner {
+            background-color: #f4f4f4;
+            padding: 2rem;
             text-align: center;
-            font-family: Arial, sans-serif;
         }
-        #contenedor-ruleta {
-            position: relative;
-            width: 420px;
-            margin: 0 auto;
-            padding-top: 50px;
+        
+        .content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: auto;
         }
-        #ruletaCanvas {
-            display: block;
-            border: 5px solid #333;
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            background-color: white;
+        
+        .multimedia-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
         }
-        #flecha {
-            position: absolute;
-            top: 50%;
-            left: 100%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border-top: 25px solid transparent;
-            border-bottom: 25px solid transparent;
-            border-right: 50px solid #FF0000;
-            z-index: 10;
-            filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+        
+        .multimedia-item {
+            flex: 1;
+            min-width: 300px;
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
         }
-        #flecha::after {
-            content: "";
-            position: absolute;
-            top: -15px;
-            left: 30px;
-            width: 30px;
-            height: 30px;
-            background-color: #FFD700;
-            border-radius: 50%;
-            z-index: -1;
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
         }
-        #botonGirar {
-            display: block;
-            margin: 20px auto;
+        
+        .btn {
             padding: 10px 20px;
-            font-size: 18px;
-            background-color: #FF0000;
+            background: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            text-decoration: none;
         }
-        #botonGirar:hover {
-            background-color: #E60000;
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 20px;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
-    <div id="contenedor-ruleta">
-        <canvas id="ruletaCanvas" width="400" height="400"></canvas>
-        <div id="flecha"></div>
+    <!-- Página de Inicio -->
+    <header id="header">
+        <div class="logo">
+            <img src="logo.png" alt="Aprende Multimedia" height="50">
+            <h1>Aprende Multimedia</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#header">Inicio</a></li>
+                <li><a href="#preescolar">Preescolar</a></li>
+                <li><a href="#primaria">Primaria</a></li>
+                <li><a href="#secundaria">Secundaria</a></li>
+                <li><a href="#medio-superior">Medio Superior</a></li>
+                <li><a href="#superior">Superior</a></li>
+                <li><a href="#contacto">Contacto/Ayuda</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="banner">
+        <h2>Bienvenido a Aprende Multimedia</h2>
+        <p>Una plataforma educativa interactiva para todos los niveles</p>
+        <!-- Aquí iría un video o imagen de banner -->
     </div>
-    <button id="botonGirar">Girar Ruleta</button>
-    <div id="resultado" style="text-align: center; font-size: 24px; margin-top: 20px;"></div>
-
+    
+    <div class="content">
+        <h2>¿Qué es Aprende Multimedia?</h2>
+        <p>Aprende Multimedia es una plataforma educativa que ofrece recursos interactivos para estudiantes de todos los niveles. Nuestro objetivo es hacer el aprendizaje más divertido y efectivo a través de videos, infografías y actividades interactivas.</p>
+        <p>Selecciona tu nivel educativo en el menú superior para comenzar a explorar nuestros recursos.</p>
+    </div>
+    
+    <!-- Página de Nivel Educativo (Ejemplo: Primaria) -->
+    <div id="primaria" class="content" style="display: none;">
+        <h2>Nivel Primaria</h2>
+        <h3>Las Plantas y su Ciclo de Vida</h3>
+        
+        <div class="multimedia-container">
+            <div class="multimedia-item">
+                <h4>Video Explicativo</h4>
+                <!-- Espacio para incrustar video -->
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+            </div>
+            
+            <div class="multimedia-item">
+                <h4>Infografía Interactiva</h4>
+                <!-- Espacio para infografía -->
+                <img src="infografia-plantas.jpg" alt="Ciclo de vida de las plantas" style="width:100%;">
+                <p>Haz clic en las diferentes partes de la planta para aprender más.</p>
+            </div>
+        </div>
+        
+        <div class="multimedia-item">
+            <h4>Actividad Interactiva</h4>
+            <!-- Quiz simple -->
+            <div id="quiz">
+                <p>1. ¿Qué necesitan las plantas para hacer la fotosíntesis?</p>
+                <input type="radio" name="q1" id="q1a"> <label for="q1a">Agua, luz solar y dióxido de carbono</label><br>
+                <input type="radio" name="q1" id="q1b"> <label for="q1b">Agua y tierra</label><br>
+                <input type="radio" name="q1" id="q1c"> <label for="q1c">Solo luz solar</label>
+                
+                <p>2. ¿Qué parte de la planta absorbe agua y nutrientes?</p>
+                <input type="radio" name="q2" id="q2a"> <label for="q2a">Las hojas</label><br>
+                <input type="radio" name="q2" id="q2b"> <label for="q2b">Las raíces</label><br>
+                <input type="radio" name="q2" id="q2c"> <label for="q2c">El tallo</label>
+                
+                <button class="btn" onclick="calcularResultado()">Verificar respuestas</button>
+                <div id="resultado"></div>
+            </div>
+        </div>
+        
+        <div class="navigation-buttons">
+            <a href="#preescolar" class="btn">Anterior</a>
+            <a href="#header" class="btn">Inicio</a>
+            <a href="#secundaria" class="btn">Siguiente</a>
+        </div>
+    </div>
+    
+    <!-- Página de Contacto -->
+    <div id="contacto" class="content" style="display: none;">
+        <h2>Contacto / Ayuda</h2>
+        
+        <div class="contact-form">
+            <form id="formulario-contacto">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Enviar mensaje</button>
+            </form>
+        </div>
+        
+        <div class="contact-info" style="margin-top: 30px;">
+            <h3>También puedes contactarnos por:</h3>
+            <p>Email: contacto@aprendemultimedia.com</p>
+            <p>Teléfono: +52 55 1234 5678</p>
+            
+            <div class="social-media">
+                <h3>Síguenos en redes sociales:</h3>
+                <a href="#"><img src="facebook-icon.png" alt="Facebook" width="30"></a>
+                <a href="#"><img src="twitter-icon.png" alt="Twitter" width="30"></a>
+                <a href="#"><img src="youtube-icon.png" alt="YouTube" width="30"></a>
+            </div>
+        </div>
+        
+        <div class="navigation-buttons">
+            <a href="#header" class="btn">Volver al inicio</a>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Aprende Multimedia &copy; 2023 - Todos los derechos reservados</p>
+        <p>Desarrollado por [Los Yakulada]</p>
+        <p>anleuesparzaangeljafed@cecyt12.edu.mx</p>
+    </footer>
+    
     <script>
-        const canvas = document.getElementById('ruletaCanvas');
-        const ctx = canvas.getContext('2d');
-        const botonGirar = document.getElementById('botonGirar');
-        const resultado = document.getElementById('resultado');
-        const flecha = document.getElementById('flecha');
-
-        const opciones = [
-            {color: '#FF0000', texto: 'Set LEGO Star Wars'},
-            {color: '#FFD700', texto: 'Minifigura dorada'},
-            {color: '#0057B7', texto: 'Pase a LEGOLAND'},
-            {color: '#00A651', texto: 'Set LEGO Ninjago'},
-            {color: '#FF6B00', texto: '30% Descuento'},
-            {color: '#00BFFF', texto: 'Set LEGO Friends'},
-            {color: '#FF69B4', texto: 'Set LEGO Disney'},
-            {color: '#800080', texto: 'Sigue participando'},
-            {color: '#C0FF00', texto: '15% Descuento'},
-            {color: '#FFFFFF', texto: 'Piezas LEGO exclusivas'},
-            {color: '#FFA500', texto: 'Set LEGO City'},
-            {color: '#FF1493', texto: 'Sorpresa LEGO'},
-            {color: '#ADD8E6', texto: 'Sigue participando'}
-        ];
-
-        let anguloActual = 0;
-        let girando = false;
-        let anguloFinal = 0;
-        const logo = new Image();
-        logo.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/500px-LEGO_logo.svg.png';
-        logo.crossOrigin = "Anonymous";
-
-        function dibujarRuleta() {
-            const centroX = canvas.width / 2;
-            const centroY = canvas.height / 2;
-            const radio = Math.min(centroX, centroY) - 10;
-            const anguloPorSeccion = (2 * Math.PI) / opciones.length;
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            opciones.forEach((opcion, index) => {
-                ctx.beginPath();
-                ctx.moveTo(centroX, centroY);
-                ctx.arc(
-                    centroX, centroY, radio,
-                    anguloActual + (index * anguloPorSeccion),
-                    anguloActual + ((index + 1) * anguloPorSeccion)
-                );
-                ctx.closePath();
-                ctx.fillStyle = opcion.color;
-                ctx.fill();
-                ctx.stroke();
-
-                ctx.save();
-                ctx.translate(centroX, centroY);
-                ctx.rotate(anguloActual + (index * anguloPorSeccion) + (anguloPorSeccion / 2));
-                ctx.textAlign = 'right';
-                ctx.font = 'bold 14px Arial';
-                ctx.fillStyle = (['#0057B7', '#800080', '#00A651'].includes(opcion.color)) ? '#FFF' : '#000';
-                ctx.fillText(opcion.texto, radio - 20, 5);
-                ctx.restore();
-            });
-
-            if (logo.complete) {
-                ctx.save();
-                ctx.beginPath();
-                ctx.arc(centroX, centroY, 40, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.clip();
-                ctx.drawImage(logo, centroX - 40, centroY - 40, 80, 80);
-                ctx.restore();
-
-                ctx.beginPath();
-                ctx.arc(centroX, centroY, 40, 0, Math.PI * 2);
-                ctx.strokeStyle = '#FFF';
-                ctx.lineWidth = 3;
-                ctx.stroke();
+        // Función para el quiz
+        function calcularResultado() {
+            let puntaje = 0;
+            
+            if (document.getElementById('q1a').checked) puntaje++;
+            if (document.getElementById('q2b').checked) puntaje++;
+            
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML = `<p>Obtuviste ${puntaje} de 2 respuestas correctas.</p>`;
+            
+            if (puntaje === 2) {
+                resultado.innerHTML += '<p>¡Excelente! Sabes mucho sobre las plantas.</p>';
+            } else if (puntaje === 1) {
+                resultado.innerHTML += '<p>¡Buen intento! Sigue aprendiendo.</p>';
             } else {
-                ctx.beginPath();
-                ctx.arc(centroX, centroY, 40, 0, Math.PI * 2);
-                ctx.fillStyle = '#FF0000';
-                ctx.fill();
-                ctx.stroke();
+                resultado.innerHTML += '<p>Revista el material y vuelve a intentarlo.</p>';
             }
         }
-
-        function girar() {
-            if (girando) return;
-
-            girando = true;
-            resultado.textContent = '';
-
-            const vueltas = 5 + Math.random() * 3;
-            anguloFinal = (vueltas * 2 * Math.PI) + (Math.random() * 2 * Math.PI);
-            const duracion = 5000;
-            const inicio = performance.now();
-
-            function animar(tiempoActual) {
-                const tiempoTranscurrido = tiempoActual - inicio;
-                const progreso = Math.min(tiempoTranscurrido / duracion, 1);
-                const easing = 1 - Math.pow(1 - progreso, 3);
-
-                anguloActual = easing * anguloFinal;
-                dibujarRuleta();
-
-                if (progreso < 1) {
-                    requestAnimationFrame(animar);
+        
+        // Manejo del formulario de contacto
+        document.getElementById('formulario-contacto').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+            this.reset();
+        });
+        
+        // Navegación simple (en un proyecto real usarías un framework o enrutamiento más sofisticado)
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                
+                // Ocultar todos los contenidos
+                document.querySelectorAll('.content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // Mostrar el contenido seleccionado
+                if (targetId === 'header') {
+                    document.querySelector('.banner').style.display = 'block';
+                    document.querySelector('.content').style.display = 'block';
                 } else {
-                    const anguloNormalizado = anguloFinal % (2 * Math.PI);
-                    const indiceGanador = Math.floor(opciones.length - (anguloNormalizado / (2 * Math.PI / opciones.length))) % opciones.length;
-                    resultado.textContent = `¡Ganaste: ${opciones[indiceGanador].texto}!`;
-                    girando = false;
+                    document.querySelector('.banner').style.display = 'none';
+                    document.getElementById(targetId).style.display = 'block';
                 }
-            }
-
-            requestAnimationFrame(animar);
-        }
-
-        logo.onload = dibujarRuleta;
-        dibujarRuleta();
-        botonGirar.addEventListener('click', girar);
+            });
+        });
     </script>
 </body>
 </html>
