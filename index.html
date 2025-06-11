@@ -346,46 +346,69 @@ footer {
         <p>anleuesparzaangeljafed@cecyt12.edu.mx</p>
     </footer>
 
-    <script>
-        // Menú hamburguesa
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            const nav = document.getElementById('main-nav');
-            nav.classList.toggle('active');
+    <script> 
+    // Menú hamburguesa
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+        const nav = document.getElementById('main-nav');
+        nav.classList.toggle('active');
+    });
+
+    // Cerrar menú al seleccionar opción (móviles)
+    document.querySelectorAll('#main-nav a').forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth < 768) {
+                document.getElementById('main-nav').classList.remove('active');
+            }
         });
-        
-        // Cerrar menú al seleccionar opción (móviles)
-        document.querySelectorAll('#main-nav a').forEach(link => {
-            link.addEventListener('click', function() {
-                if (window.innerWidth < 768) {
-                    document.getElementById('main-nav').classList.remove('active');
-                }
+    });
+
+    // Navegación entre secciones
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+
+            document.querySelectorAll('.content').forEach(content => {
+                content.style.display = 'none';
+            });
+
+            if (targetId === 'header') {
+                document.querySelector('.banner').style.display = 'block';
+                document.querySelector('.content').style.display = 'block';
+            } else {
+                document.querySelector('.banner').style.display = 'none';
+                document.getElementById(targetId).style.display = 'block';
+            }
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
-        
-        // Tu script original de navegación
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                
-                document.querySelectorAll('.content').forEach(content => {
-                    content.style.display = 'none';
-                });
-                
-                if (targetId === 'header') {
-                    document.querySelector('.banner').style.display = 'block';
-                    document.querySelector('.content').style.display = 'block';
-                } else {
-                    document.querySelector('.banner').style.display = 'none';
-                    document.getElementById(targetId).style.display = 'block';
-                }
-                
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    });
+
+    // Función para verificar respuestas del cuestionario
+    function calcularResultado() {
+        let correctas = 0;
+
+        const r1 = document.getElementById('q1a');
+        const r2 = document.getElementById('q2b');
+
+        if (r1.checked) correctas++;
+        if (r2.checked) correctas++;
+
+        const total = 2;
+        const resultado = document.getElementById('resultado');
+
+        resultado.innerHTML = `
+            <p>Respuestas correctas: ${correctas} de ${total}</p>
+            ${correctas === total
+                ? "<p>¡Excelente! Has respondido correctamente todas las preguntas.</p>"
+                : "<p>Sigue practicando para mejorar tus resultados.</p>"
+            }
+        `;
+    }
+</script>
+
 </body>
 </html>
