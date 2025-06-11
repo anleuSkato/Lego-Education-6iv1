@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aprende Multimedia</title>
-    <style>
-        /* Estilos generales */
+<style>
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -13,138 +12,75 @@
             line-height: 1.6;
             color: #333;
         }
-        
-        /* Encabezado responsive */
+
         header {
             background-color: #4CAF50;
             color: white;
             padding: 1rem;
-            position: relative;
-        }
-        
-        .logo-container {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            width: 100%;
+            align-items: center;
+            flex-wrap: wrap;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
+            gap: 10px;
         }
-        
-        .logo h1 {
-            margin: 0;
-            font-size: 1.2rem;
-            margin-left: 0.5rem;
-        }
-        
-        .logo img {
-            height: 40px;
-        }
-        
-        /* Menú hamburguesa */
-        .menu-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: block;
-            padding: 0.5rem;
-        }
-        
-        nav {
-            display: none;
-            width: 100%;
-        }
-        
-        nav.active {
-            display: block;
-        }
-        
+
         nav ul {
+            display: flex;
+            flex-wrap: wrap;
             list-style: none;
             padding: 0;
-            margin: 1rem 0 0 0;
+            margin: 0;
         }
-        
+
         nav ul li {
-            margin: 0.5rem 0;
+            margin-left: 20px;
         }
-        
+
         nav ul li a {
             color: white;
             text-decoration: none;
-            display: block;
-            padding: 0.5rem;
         }
-        
-        /* Contenido principal (manteniendo tus estilos originales) */
+
         .banner {
             background-color: #f4f4f4;
-            padding: 2rem 1rem;
+            padding: 2rem;
             text-align: center;
-            display: block; /* Asegurar que sea visible */
         }
-        
+
         .content {
-            padding: 1.5rem;
+            padding: 2rem;
             max-width: 1200px;
             margin: auto;
-            display: block; /* Asegurar que sea visible */
         }
-        
-        /* Estilos para pantallas grandes */
-        @media (min-width: 768px) {
-            .menu-toggle {
-                display: none;
-            }
-            
-            nav {
-                display: block;
-                width: auto;
-            }
-            
-            nav ul {
-                display: flex;
-                margin: 0;
-            }
-            
-            nav ul li {
-                margin: 0 0 0 1.5rem;
-            }
-            
-            .logo h1 {
-                font-size: 1.5rem;
-            }
-        }
-        
-        /* Mantener tus otros estilos originales */
+
         .multimedia-container {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             margin: 20px 0;
         }
-        
+
         .multimedia-item {
-            flex: 1 1 100%;
+            flex: 1;
+            min-width: 300px;
             background: #f4f4f4;
             padding: 15px;
             border-radius: 5px;
-            box-sizing: border-box;
         }
-        
+
         .navigation-buttons {
             display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 10px;
+            margin-top: 30px;
         }
-        
+
         .btn {
             padding: 10px 20px;
             background: #4CAF50;
@@ -153,11 +89,9 @@
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
-            display: inline-block;
             text-align: center;
-            flex: 1 1 auto;
         }
-        
+
         footer {
             background: #333;
             color: white;
@@ -165,7 +99,70 @@
             padding: 1rem;
             margin-top: 20px;
         }
+
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .social-media a {
+            margin: 0 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .navigation-buttons {
+                flex-direction: column;
+            }
+
+            .multimedia-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                width: 100%;
+            }
+
+            iframe {
+                height: 200px;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+        }
     </style>
+</head>
 </head>
 <body>
     <!-- Encabezado responsive -->
